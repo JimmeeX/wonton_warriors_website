@@ -1,8 +1,10 @@
 import React from 'react';
 
+import sample1 from '../images/sample.jpg';
+
 const Carousel = () => (
-  <div>
-    Carousel
+  <div className='carousel'>
+    <img src={sample1} alt='sample1' />
   </div>
 );
 
