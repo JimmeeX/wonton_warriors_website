@@ -13,7 +13,7 @@ const Carousel = () => {
   const [index, set] = useState(0);
   const transitions = useTransition(slides[index], item => item, {
     from: { opacity: 0 },
-    enter: { opacity: 1 },
+    enter: { opacity: 0.3 },
     leave: { opacity: 0 },
     config: config.molasses,
   });
@@ -22,7 +22,7 @@ const Carousel = () => {
   return transitions.map(({ item, props, key }) => (
     <animated.div
       key={key}
-      class="bg"
+      class='carousel-img'
       style={{ ...props, backgroundImage: `url(${item})` }}
     />
   ));
