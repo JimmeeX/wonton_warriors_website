@@ -4,13 +4,16 @@
 }
 
 .header {
+  position: fixed;
+  width: 100%;
   display: grid;
   grid-template-columns: 50px auto 150px;
-  background-color: rgb(58, 1, 1);
+  background-color: rgb(41, 2, 2);
 }
 
-.header ul {
+.header-menu {
   list-style: none;
+  /* text-decoration: none; */
   margin: 0;
   padding: 0;
   display: flex;
@@ -18,14 +21,16 @@
   align-items: center;
 }
 
-.header ul li {
+.header-menu li {
   margin: 10px;
 }
 
-.header-logo {
+.header-menu li a {
+  text-decoration: none;
+  color: aliceblue;
 }
 
-.header-menu {
+.header-logo {
 }
 
 .header-translate {
@@ -34,7 +39,7 @@
   align-items: center;
 }
 
-.carousel img {
+#home img {
   width: 100%;
 }
 
