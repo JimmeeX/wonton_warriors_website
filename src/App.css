@@ -84,7 +84,7 @@
 }
 
 .section-content-wrapper {
-  padding: 20px 15% 20px 15%;
+  padding: 10vh 15vw 10vh 15vw;
   text-align: center;
   background-color: rgb(41, 2, 2);
   background-image: url('images/logo_mark.png');
@@ -99,9 +99,6 @@
 
 .icon-list {
   display: flex;
-  /* margin: 0px 10px 0px 10px */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
 .icon-wrapper {
