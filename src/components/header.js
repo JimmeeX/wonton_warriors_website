@@ -17,6 +17,7 @@ const Header = () => (
         <li><Link smooth to="#home">Home</Link></li>
         <li><Link smooth to="#about">About</Link></li>
         <li><Link smooth to="#menu">Menu</Link></li>
+        <li><Link smooth to="#contact">Contact</Link></li>
       </ul>
       <div className='header-translate'>
         <div>English</div>

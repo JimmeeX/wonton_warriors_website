@@ -2,14 +2,12 @@ import React from 'react';
 
 const Menu = () => (
   <div id='menu' className='section'>
-    <div className='menu-layout'>
+    <div className='section-layout'>
+      <div className='section-extra-wrapper'></div>
       <div className='section-content-wrapper'>
-        <p>Spice Temple is a modern Chinese restaurant with a culinary focus on China’s lesser known regions. Our menus are designed to be shared and enjoyed banquet style in our intimate and seductive surrounds. Driven by our philosophy of incorporating world-class service with a deep respect for the highest quality produce Spice Temple offers modern Chinese food as it’s rarely been seen before in Australia.
-        </p>
-        <p>Address: 135A Burwood Rd, Burwood NSW 2134</p>
-        <p>Phone: </p>
+        <h1>Menu</h1>
+        <p>Wonton Warrior specialises in unique, freshly hand-crafted wontons. We also offer a comprehensive range of other Chinese delicacies including dumplings noodles and specialty dishes to suit all taste palettes and appetites.</p>
       </div>
-      <div className='section-header-wrapper'><h1>Menu</h1></div>
     </div>
   </div>
 );

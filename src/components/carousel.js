@@ -22,7 +22,7 @@ const Carousel = () => {
   return transitions.map(({ item, props, key }) => (
     <animated.div
       key={key}
-      class='carousel-img'
+      className='carousel-img'
       style={{ ...props, backgroundImage: `url(${item})` }}
     />
   ));
