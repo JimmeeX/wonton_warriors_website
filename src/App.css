@@ -8,6 +8,7 @@
   z-index: 2;
   width: 100vw;
   max-width: 100%;
+  overflow: scroll;
   height: 10vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -76,7 +77,9 @@
   margin-right: auto;
   left: 0;
   right: 0;
-  width: 500px;
+  top: 20vh;
+  width: 50vw;
+  max-width: 500px;
 }
 
 .carousel-img {

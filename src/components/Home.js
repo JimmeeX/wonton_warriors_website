@@ -2,7 +2,7 @@ import React from 'react';
 
 import Carousel from './carousel';
 
-import mainLogo from '../images/main_logo.png';
+import mainLogo from '../images/main_logo_crop.png';
 
 const Home = () => (
   <div id='home' className='section'>
