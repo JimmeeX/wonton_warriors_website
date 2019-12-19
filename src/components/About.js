@@ -11,15 +11,13 @@ const About = () => (
       </div>
       <div
         className='section-extra-wrapper'
-        style={
-          {
-            backgroundImage: `url(${exterior})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            opacity: '0.75'
-          }
-        }
+        style={{
+          backgroundImage: `url(${exterior})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          opacity: '0.75'
+        }}
       >
       </div>
     </div>

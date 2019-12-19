@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Gallery from './gallery';
+
 import sample from '../images/menu/DSC05835.jpg';
 
 import menuPDF from '../menu.pdf';
@@ -7,17 +9,8 @@ import menuPDF from '../menu.pdf';
 const Menu = () => (
   <div id='menu' className='section'>
     <div className='section-layout'>
-      <div className='section-extra-wrapper'
-        style={
-          {
-            backgroundImage: `url(${sample})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            opacity: '0.75'
-          }
-        }
-      >
+      <div id='gallery-parent' className='section-extra-wrapper'>
+        <Gallery />
       </div>
       <div className='section-content-wrapper'>
         <h1>Menu</h1>

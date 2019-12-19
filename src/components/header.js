@@ -15,7 +15,7 @@ const Header = () => {
       else if (window.scrollY < window.innerHeight*offset * 3) setActive('menu');
       else setActive('location');
     })
-  });
+  }, []);
 
   return (
     <BrowserRouter>
