@@ -8,7 +8,7 @@
   z-index: 2;
   width: 100vw;
   max-width: 100%;
-  overflow: scroll;
+  /* overflow-x: scroll; */
   height: 10vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -102,7 +102,7 @@
 
 .section-content-wrapper {
   height: 100vh;
-  padding: 0px 15px 0px 15px;
+  padding: 15px;
   /* padding: 10vh 15vw 10vh 15vw; */
   text-align: center;
   background-color: rgb(41, 2, 2);
@@ -155,32 +155,17 @@ h1 {
 /* grid-template-columns: 50px auto 150px; */
 
 @media only screen and (max-width: 700px) {
+  .header {
+    overflow-x: scroll;
+  }
+
   .section-layout {
     display: flex;
     flex-direction: column;
-    /* grid-template-columns: 1fr; */
-    /* grid-template-rows: 1fr 1fr; */
-    /* height: 50vh; */
   }
 
   .section-content-wrapper {
-    height: 100vh;
-    padding: 0px 15px 0px 15px;
-    /* padding: 10vh 15vw 10vh 15vw; */
-    text-align: center;
-    background-color: rgb(41, 2, 2);
-    background-image: url('images/logo_mark.png');
     background-size: 20rem;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-blend-mode: screen;
-
-    font-family: 'Libre Baskerville', serif;
-    color: aliceblue;
-  }
-
-  .section-extra-wrapper {
-    height: 100vh;
   }
 
   h1 {
