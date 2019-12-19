@@ -9,7 +9,9 @@ import Header from './components/header';
 
 import './App.css';
 
-function App() {
+const App = () => {
+  // const [scroll, setScroll]
+
   return (
     <div className="app">
       <Header />
@@ -19,6 +21,6 @@ function App() {
       <Contact />
     </div>
   );
-}
+};
 
 export default App;

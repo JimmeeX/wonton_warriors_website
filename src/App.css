@@ -12,13 +12,15 @@
   max-width: 100%;
   height: 5vw;
   display: grid;
-  grid-template-columns: 100px auto 150px;
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: rgb(41, 2, 2);
+
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.25rem;
 }
 
 .header-menu {
   list-style: none;
-  /* text-decoration: none; */
   margin: 0;
   padding: 0;
   display: flex;
@@ -30,9 +32,15 @@
   margin: 20px;
 }
 
-.header-menu li a {
-  text-decoration: none;
+.menu-item {
   color: aliceblue;
+  text-decoration: none;
+}
+
+.menu-item-active {
+  color: #C8A063;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .header-logo-wrapper {
@@ -92,9 +100,21 @@
   background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: screen;
+
+  font-family: 'Libre Baskerville', serif;
+  color: aliceblue;
+}
+
+.section-content-wrapper h1 {
+  color: #C8A063;
 }
 
 .section-extra-wrapper {
+}
+
+.menu-link {
+  text-decoration: underline;
+  color: white;
 }
 
 .icon-list {
