@@ -55,28 +55,26 @@ const Gallery = () => {
       const newHeight = imgHeight * multiplier;
       const newX = window.innerWidth / 2 + window.scrollX - el.offsetLeft - newWidth / 2
       const newY = window.innerHeight / 2 + window.scrollY - el.offsetTop - newHeight / 2
-      // console.log(newX, newY);
       return {
         item,
         xy: [newX, newY],
         width: newWidth,
         height: newHeight,
-        opacity: 1
+        opacity: 1,
+        hidden: false
       }
     }
 
     // Shuffle numCol wise forwards
     const shiftIndex = (i - index + images.length) % images.length
     const col = shiftIndex % numCols;
-    const row = Math.floor(shiftIndex / numCols);
+    const row = Math.min(Math.floor(shiftIndex / numCols), numRows);
     const x = gridW / numCols * col;
     const y = gridH / numRows * row;
-    let opacity = 1;
-    if (shiftIndex >= numItems) {
-      opacity = 0;
-    }
+    const opacity = shiftIndex >= numItems ? 0 : 1;
+    const hidden = shiftIndex >= numItems ? true : false;
     // console.log(i, shiftIndex, row, col, item)
-    return { item, xy: [x, y], width: imgWidth, height: imgHeight, opacity }
+    return { item, xy: [x, y], width: imgWidth, height: imgHeight, opacity, hidden }
   });
 
   const transitions = useTransition(gridItems, item => item.item, {
@@ -101,9 +99,8 @@ const Gallery = () => {
           <animated.div
             id={`gallery-card-${key}`}
             key={key}
-            className={item.item === active ? 'gallery-card-active' : 'gallery-card'}
-            onMouseDown={() => setActive(item.item)}
-            // onMouseUp={() => setActive(null)}
+            className={item.item === active ? 'gallery-card-active' : (item.hidden === true ? 'gallery-card-hidden' : 'gallery-card')}
+            onMouseDown={() => {if(!item.hidden) setActive(item.item)}}
             style={{
               backgroundImage: `url(${item.item})`,
               backgroundRepeat: 'no-repeat',
