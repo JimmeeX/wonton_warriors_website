@@ -73,7 +73,6 @@ const Gallery = () => {
     const y = gridH / numRows * row;
     const opacity = shiftIndex >= numItems ? 0 : 1;
     const hidden = shiftIndex >= numItems ? true : false;
-    // console.log(i, shiftIndex, row, col, item)
     return { item, xy: [x, y], width: imgWidth, height: imgHeight, opacity, hidden }
   });
 

@@ -146,32 +146,13 @@
   filter: invert();
 }
 
-.gallery {
-
-  /* background-color: gray; */
-  /* display: flex; */
-  /* justify-content: space-evenly; */
-  /* position: relative; */
-}
-
 .gallery > div {
   position: absolute;
-  /* will-change: transform, width, height, opacity; */
-
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: space-evenly; */
-  /* width: 50vw; */
-  /* height: 100%; */
-  /* background-color: gray; */
 }
 
 .gallery-card, .gallery-card-active {
   cursor: pointer;
-  /* height: 133px; */
-  /* width: 200px; */
   border-radius: 5%;
-  /* margin: 10px; */
 }
 
 .gallery-card-hidden {
