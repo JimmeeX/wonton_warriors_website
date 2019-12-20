@@ -14,25 +14,14 @@ const imgHeight = 133;
 const marginW = 10;
 const marginH = 10;
 
-const GalleryCard = (props) => {
-  return (
-    <div className='gallery-card'
-      style={{
-        backgroundImage: `url(${props.img})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-      }}
-    >
-    </div>
-  );
-};
-
 const Gallery = () => {
+  const [stop, setStop] = useState(false);
+
   // Current Size of parent element
   const [gridW, setGridW] = useState(0);
   const [gridH, setGridH] = useState(0);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(0);      // Index for order of gallery items
+  const [active, setActive] = useState(null); // Gallery Item Clicked
 
   const numCols = Math.max(Math.floor(gridW / (imgWidth + (marginW*2))), 1);
   const numRows = Math.max(Math.floor(gridH / (imgHeight + (marginH*2))), 1);
@@ -46,28 +35,45 @@ const Gallery = () => {
     // Initial Values
     setGridW(document.getElementById('gallery-parent').offsetWidth);
     setGridH(document.getElementById('gallery-parent').offsetHeight);
+
+    window.addEventListener('mouseup', () => setActive(null));
   }, []);
 
-  useEffect(() => void setInterval(
-    () => setIndex(index => (index + 8) % images.length), 5000
-  ), []);
-
-  // const items = images.slice(index, (index + numItems) % images.length);
-
-  // const items = images.slice(index, (index + numItems) % images.length).concat()
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!stop && active === null) setIndex(index => (index + numCols) % images.length)
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [stop, active, numCols]);
 
   let gridItems = images.map((item, i) => {
+    if (item === active) {
+      const el = document.getElementById('gallery-parent');
+      // Expand, place in center
+      const multiplier = Math.min(window.innerHeight / imgWidth, (window.innerWidth * 0.9) / imgHeight);
+      const newWidth = imgWidth * multiplier;
+      const newHeight = imgHeight * multiplier;
+      const newX = window.innerWidth / 2 + window.scrollX - el.offsetLeft - newWidth / 2
+      const newY = window.innerHeight / 2 + window.scrollY - el.offsetTop - newHeight / 2
+      // console.log(newX, newY);
+      return {
+        item,
+        xy: [newX, newY],
+        width: newWidth,
+        height: newHeight,
+        opacity: 1
+      }
+    }
+
     // Shuffle numCol wise forwards
     const shiftIndex = (i - index + images.length) % images.length
     const col = shiftIndex % numCols;
     const row = Math.floor(shiftIndex / numCols);
-    let x = gridW / numCols * col;
-    let y = gridH / numRows * row;
+    const x = gridW / numCols * col;
+    const y = gridH / numRows * row;
     let opacity = 1;
     if (shiftIndex >= numItems) {
       opacity = 0;
-      x = 1000;
-      y = 1000;
     }
     // console.log(i, shiftIndex, row, col, item)
     return { item, xy: [x, y], width: imgWidth, height: imgHeight, opacity }
@@ -80,51 +86,37 @@ const Gallery = () => {
     update: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
     // leave: { height: 0, opacity: 0 },
     config: { mass: 5, tension: 500, friction: 100 },
-    trail: 25
+    trail: 0
   });
 
-  // console.log(gridItems)
-
-  // console.log(gridItems);
-
-  // console.log(gridW, gridH);
-  // console.log(numCols, numRows);
-  // console.log(index, numCols);
-  // console.log(bind);
-  // console.log(transitions);
-
   return (
-    <div className='gallery'>
-      {/* {gridItems.map((item, i) =>
-        <div
-          key={i}
-          style={{
-            backgroundImage: `url(${item.item})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            transform: `translate3d(${item.x/2}, ${item.y/2}, 0)`,
-            height: `${item.height}px`,
-            width: `${item.width}px`,
-            margin: `${marginH}px ${marginW}px ${marginH}px ${marginW}px`
-          }}
-        ></div>
-      )} */}
-      {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-        <animated.div
-          key={key}
-          style={{
-            backgroundImage: `url(${item.item})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            margin: `${marginH}px ${marginW}px ${marginH}px ${marginW}px`,
-            transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
-            ...rest
-          }}
-        >
-        </animated.div>
-      ))}
+    <div
+      id='gallery-parent'
+      className='section-extra-wrapper'
+      onMouseEnter={() => setStop(true)}
+      onMouseLeave={() => setStop(false)}
+    >
+      <div className='gallery'>
+        {transitions.map(({ item, props: { xy, ...rest }, key }) => (
+          <animated.div
+            id={`gallery-card-${key}`}
+            key={key}
+            className={item.item === active ? 'gallery-card-active' : 'gallery-card'}
+            onMouseDown={() => setActive(item.item)}
+            // onMouseUp={() => setActive(null)}
+            style={{
+              backgroundImage: `url(${item.item})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              margin: `${marginH}px ${marginW}px ${marginH}px ${marginW}px`,
+              transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
+              ...rest
+            }}
+          >
+          </animated.div>
+        ))}
+      </div>
     </div>
   );
 };
