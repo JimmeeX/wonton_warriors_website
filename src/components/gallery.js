@@ -55,7 +55,7 @@ const Gallery = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (!stop && active === null) setIndex(index => (index + numCols) % base_imgs.length)
-    }, 1000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [stop, active, numCols]);
 
