@@ -31,10 +31,6 @@ const Header = () => {
           <li><Link smooth to="#menu" className={active === 'menu' ? 'menu-item-active' : 'menu-item'}>Menu</Link></li>
           <li><Link smooth to="#contact" className={active === 'location' ? 'menu-item-active' : 'menu-item'}>Contact</Link></li>
         </ul>
-        {/* <div className='header-translate'>
-          <div>English</div>
-          <div>Chinese</div>
-        </div> */}
       </div>
     </BrowserRouter>
   )
