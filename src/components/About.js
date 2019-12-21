@@ -17,6 +17,7 @@ const About = () => (
         className='section-extra-wrapper'
         src={exteriorS}
         srcSet={`${exteriorS} 300w, ${exteriorM} 768w, ${exteriorL} 1280w, ${exteriorVL} 1920w`}
+        alt='wonton-warrior-exterior-store'
         style={{
           objectFit: 'cover',
           width: '100%',
