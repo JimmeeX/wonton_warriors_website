@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 
-import Headerlogo from '../images/logo_header.png';
+import Headerlogo from '../images/logo_header-300w.png';
 
 const Header = () => {
   const [active, setActive] = useState('home');

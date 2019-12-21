@@ -3,11 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { useTransition, animated } from 'react-spring'
 
 // Import all files from a directory
-function importAll(r) {
-  return r.keys().map(r);
+const importAll = (r) => {
+  const files = {};
+
+  const parse_regex = /(.+)-(\d+)w.(?:jpg|png)/;
+
+  r.keys().map(key => {
+    const match = parse_regex.exec(key);
+    const base_file = match[1];
+    const file_size = match[2];
+    if (!(base_file in files)) files[base_file] = {}
+    files[base_file][file_size] = r(key);
+    return null;
+  })
+  return files;
 };
 
-const images = importAll(require.context('../images/gallery', false, /\.(png|jpe?g|svg)$/));
+const imgs = importAll(require.context('../images/gallery', false, /-\d+w\.(png|jpe?g|svg)$/));
+const base_imgs = Object.keys(imgs);
 
 const imgWidth = 200;
 const imgHeight = 133;
@@ -41,12 +54,12 @@ const Gallery = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!stop && active === null) setIndex(index => (index + numCols) % images.length)
-    }, 5000);
+      if (!stop && active === null) setIndex(index => (index + numCols) % base_imgs.length)
+    }, 1000);
     return () => clearInterval(interval);
   }, [stop, active, numCols]);
 
-  let gridItems = images.map((item, i) => {
+  let gridItems = base_imgs.map((item, i) => {
     if (item === active) {
       const el = document.getElementById('gallery-parent');
       // Expand, place in center
@@ -66,7 +79,7 @@ const Gallery = () => {
     }
 
     // Shuffle numCol wise forwards
-    const shiftIndex = (i - index + images.length) % images.length
+    const shiftIndex = (i - index + base_imgs.length) % base_imgs.length
     const col = shiftIndex % numCols;
     const row = Math.min(Math.floor(shiftIndex / numCols), numRows);
 
@@ -107,21 +120,18 @@ const Gallery = () => {
     >
       <div className='gallery'>
         {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-          <animated.div
+          <animated.img
             id={`gallery-card-${key}`}
             key={key}
+            src={imgs[item.item][300]}
+            srcSet={`${imgs[item.item][300]} 300w, ${imgs[item.item][768]} 768w, ${imgs[item.item][1280]} 1280w, ${imgs[item.item][1920]} 1920w`}
             className={item.item === active ? 'gallery-card-active' : (item.hidden === true ? 'gallery-card-hidden' : 'gallery-card')}
             onMouseDown={() => {if(!item.hidden) setActive(item.item)}}
             style={{
-              backgroundImage: `url(${item.item})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
               transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
               ...rest
             }}
-          >
-          </animated.div>
+          />
         ))}
       </div>
     </div>
