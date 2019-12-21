@@ -10,8 +10,6 @@ import Header from './components/header';
 import './App.css';
 
 const App = () => {
-  // const [scroll, setScroll]
-
   return (
     <div className="app">
       <Header />

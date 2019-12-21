@@ -69,11 +69,23 @@ const Gallery = () => {
     const shiftIndex = (i - index + images.length) % images.length
     const col = shiftIndex % numCols;
     const row = Math.min(Math.floor(shiftIndex / numCols), numRows);
-    const x = gridW / numCols * col;
-    const y = gridH / numRows * row;
+
+    // Dimensions of cell holding image
+    const cellWidth = gridW / numCols;
+    const cellHeight = gridH / numRows;
+
+    // Variable Width based on margins
+    const width = cellWidth - 2 * marginW;
+    const height = cellHeight - 2 * marginH;
+
+    // Center image in cell
+    const x = cellWidth * col + cellWidth / 2 - width / 2;
+    const y = cellHeight * row + cellHeight / 2 - height / 2;
+
+    // Handle hidden images
     const opacity = shiftIndex >= numItems ? 0 : 1;
     const hidden = shiftIndex >= numItems ? true : false;
-    return { item, xy: [x, y], width: imgWidth, height: imgHeight, opacity, hidden }
+    return { item, xy: [x, y], width, height, opacity, hidden }
   });
 
   const transitions = useTransition(gridItems, item => item.item, {
@@ -105,7 +117,6 @@ const Gallery = () => {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'cover',
-              margin: `${marginH}px ${marginW}px ${marginH}px ${marginW}px`,
               transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
               ...rest
             }}
