@@ -148,6 +148,7 @@
 
 .gallery > div {
   position: absolute;
+  will-change: transform, width, height, opacity;
 }
 
 .gallery-card, .gallery-card-active {
