@@ -50,6 +50,7 @@ const Gallery = () => {
     setGridH(document.getElementById('gallery-parent').offsetHeight);
 
     window.addEventListener('mouseup', () => setActive(null));
+    window.addEventListener('touchend', () => setActive(null));
   }, []);
 
   useEffect(() => {
@@ -142,6 +143,7 @@ const Gallery = () => {
             srcSet={`${imgs[item.item][300]} 300w, ${imgs[item.item][768]} 768w, ${imgs[item.item][1280]} 1280w, ${imgs[item.item][1920]} 1920w`}
             className={item.item === active ? 'gallery-card-active' : (item.hidden === true ? 'gallery-card-hidden' : 'gallery-card')}
             onMouseDown={() => {if(!item.hidden) setActive(item.item)}}
+            onTouchStart={() => {if(!item.hidden) setActive(item.item)}}
             style={{
               transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
               ...rest
