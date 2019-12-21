@@ -48,20 +48,14 @@
 .header-logo-wrapper {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
   height: 10vh;
   min-height: 75px;
 }
 
 .header-logo {
-  /* padding: 10px; */
   margin-left: 20px;
   height: 9vh;
   min-height: 70px;
-  /* min-height: 75px; */
-  /* background-color: goldenrod; */
-  /* width: 600px; */
-  /* height: 50px; */
 }
 
 .header-translate {
@@ -85,9 +79,6 @@
   height: 40vh;
   min-height: 200px;
   max-height: 500px;
-  /* width: auto; */
-  /* width: 50vw; */
-  /* max-width: 500px; */
 }
 
 .carousel-img {
@@ -110,7 +101,6 @@
 .section-content-wrapper {
   height: 100vh;
   padding: 0px 15px 0px 15px;
-  /* padding: 10vh 15vw 10vh 15vw; */
   text-align: center;
   background-color: rgb(41, 2, 2);
   background-image: url('images/logo_mark-768w.png');
@@ -140,8 +130,6 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
-
-  /* background-color: rosybrown; */
 }
 
 .icon-wrapper img {
