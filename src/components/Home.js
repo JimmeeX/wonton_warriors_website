@@ -2,12 +2,12 @@ import React from 'react';
 
 import Carousel from './carousel';
 
-import mainLogo from '../images/main_logo_crop.png';
+import mainLogo from '../images/logo_main.png';
 
 const Home = () => (
   <div id='home' className='section'>
     <div className='main-logo-wrapper'>
-      <img src={mainLogo} alt='main_logo'></img>
+      <img src={mainLogo} alt='main-logo'></img>
     </div>
     <Carousel className='carousel' />
   </div>

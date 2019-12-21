@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { HashLink as Link } from 'react-router-hash-link';
 
-import logo from '../images/header_logo1.png';
+import Headerlogo from '../images/logo_header.png';
 
 const Header = () => {
   const [active, setActive] = useState('home');
@@ -22,7 +22,7 @@ const Header = () => {
       <div className='header'>
         <div className='header-logo-wrapper'>
           <Link smooth to="#home">
-            <img className='header-logo' src={logo} alt='logo' />
+            <img className='header-logo' src={Headerlogo} alt='header-logo' />
           </Link>
         </div>
         <ul className='header-menu'>

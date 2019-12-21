@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import { useTransition, animated, config } from 'react-spring';
 
-import img1 from '../images/1.jpg';
-import img2 from '../images/2.jpg';
-import img3 from '../images/3.jpg';
+// Import all files from a directory
+function importAll(r) {
+  return r.keys().map(r);
+};
 
-
-const slides = [img1, img2, img3];
+const slides = importAll(require.context('../images/carousel', false, /\.(png|jpe?g|svg)$/));
 
 const Carousel = () => {
   const [index, set] = useState(0);
