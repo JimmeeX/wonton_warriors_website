@@ -88,8 +88,22 @@ const Gallery = () => {
     const cellHeight = gridH / numRows;
 
     // Variable Width based on margins
-    const width = cellWidth - 2 * marginW;
-    const height = cellHeight - 2 * marginH;
+    const w = cellWidth - 2 * marginW;
+    const h = cellHeight - 2 * marginH;
+
+    // Correct the ratio
+    const currRatio = w / h;
+    const desiredRatio = imgWidth / imgHeight;
+    let width = w;
+    let height = h;
+    if (currRatio < desiredRatio) {
+      // Too tall, decrease height
+      height = w * imgHeight / imgWidth;
+    }
+    else {
+      // Too wide
+      width = h * imgWidth / imgHeight;
+    }
 
     // Center image in cell
     const x = cellWidth * col + cellWidth / 2 - width / 2;
