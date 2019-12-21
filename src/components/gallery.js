@@ -124,6 +124,7 @@ const Gallery = () => {
             id={`gallery-card-${key}`}
             key={key}
             src={imgs[item.item][300]}
+            alt={`wonton-warrior-gallery-menu-${item.item}`}
             srcSet={`${imgs[item.item][300]} 300w, ${imgs[item.item][768]} 768w, ${imgs[item.item][1280]} 1280w, ${imgs[item.item][1920]} 1920w`}
             className={item.item === active ? 'gallery-card-active' : (item.hidden === true ? 'gallery-card-hidden' : 'gallery-card')}
             onMouseDown={() => {if(!item.hidden) setActive(item.item)}}

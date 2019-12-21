@@ -82,8 +82,12 @@
   left: 0;
   right: 0;
   top: 20vh;
-  width: 50vw;
-  max-width: 500px;
+  height: 70vh;
+  min-height: 200px;
+  max-height: 500px;
+  /* width: auto; */
+  /* width: 50vw; */
+  /* max-width: 500px; */
 }
 
 .carousel-img {

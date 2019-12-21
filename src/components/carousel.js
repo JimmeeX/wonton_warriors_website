@@ -39,6 +39,7 @@ const Carousel = () => {
       style={{ ...props }}
       src={imgs[item][300]}
       srcSet={`${imgs[item][300]} 300w, ${imgs[item][768]} 768w, ${imgs[item][1280]} 1280w, ${imgs[item][1920]} 1920w`}
+      alt={`carousel-menu-${item}`}
     />
   ));
 };
