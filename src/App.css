@@ -133,6 +133,12 @@
 }
 
 .icon-wrapper img {
+  height: 40px;
+  width: 40px;
+  /* background-color: white; */
+}
+
+.icon-wrapper .icon-invert {
   padding: 5px;
   border-radius: 25%;
   height: 30px;

@@ -2,22 +2,30 @@ import React from 'react';
 
 import facebookLogo from '../images/facebook-logo.svg';
 import instagramLogo from '../images/instagram-logo.svg';
+import menulogLogo from '../images/menulog-logo.png';
+import ubereatsLogo from '../images/ubereats-logo.png';
 
 const Contact = () => (
   <div id='contact' className='section'>
     <div className='section-layout'>
       <div className='section-content-wrapper' style={{textAlign: 'left'}}>
         <h1>Contact</h1>
+        <p>Make reservations via phone or email:</p>
         <p className='contact-detail'><a href='tel:0297010558'>+(02) 9701 0558</a></p>
         <p className='contact-detail'><a href='mailto:wontonwarriorburwood@gmail.com'>wontonwarriorburwood@gmail.com</a></p>
         <h2>Address</h2>
         <p>135A Burwood Rd, Burwood NSW 2134</p>
         <h2>Opening Hours</h2>
         <p>Everyday, 11:30am - 9:00pm</p>
+        <h2>Order Online ( Pickup / Delivery )</h2>
+        <div className='icon-list'>
+          <a href='https://www.menulog.com.au/restaurants-wonton-warriors/menu'><div className='icon-wrapper'><img src={menulogLogo} alt='menulogLogo'></img></div></a>
+          <a href='https://www.ubereats.com/en-AU/sydney/food-delivery/wonton-warrior/QU8lJ8Y-Sge5RFCId4SUqA/'><div className='icon-wrapper'><img src={ubereatsLogo} alt='ubereatsLogo'></img></div></a>
+        </div>
         <h2>Follow us</h2>
         <div className='icon-list'>
-          <a href='https://www.facebook.com/Wonton-Warrior-2310086639271293/'><div className='icon-wrapper'><img src={facebookLogo} alt='facebookLogo'></img></div></a>
-          <a href='https://www.instagram.com/wontonwarrior.au/'><div className='icon-wrapper'><img src={instagramLogo} alt='instagramLogo'></img></div></a>
+          <a href='https://www.facebook.com/Wonton-Warrior-2310086639271293/'><div className='icon-wrapper'><img className='icon-invert' src={facebookLogo} alt='facebookLogo'></img></div></a>
+          <a href='https://www.instagram.com/wontonwarrior.au/'><div className='icon-wrapper'><img className='icon-invert' src={instagramLogo} alt='instagramLogo'></img></div></a>
         </div>
       </div>
       <div className='section-extra-wrapper'>
