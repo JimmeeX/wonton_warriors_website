@@ -11,7 +11,7 @@ const About = () => (
     <div className='section-layout'>
       <div className='section-content-wrapper'>
         <h1>About</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae quod at in sunt nostrum molestias? Debitis sapiente magnam dolorum eum ullam repellendus, vero animi perferendis perspiciatis consectetur, totam vitae iste nam, quam ea distinctio cum ipsum possimus id voluptatem quia sequi.</p>
+        <p>We are a young noodle house specialising in a variety of handmade wontons and noodles. We aim to deliver premium quality food at a reasonable price. Our head chef has over 40 years of experience locally and overseas. Our in-house recipe is unique in flavour and will bring you on a journey to the beautiful rice fields of eastern China.</p>
       </div>
       <img
         className='section-extra-wrapper'

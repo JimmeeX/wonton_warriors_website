@@ -10,7 +10,6 @@ const Contact = () => (
     <div className='section-layout'>
       <div className='section-content-wrapper' style={{textAlign: 'left'}}>
         <h1>Contact</h1>
-        <p>Make reservations via phone or email:</p>
         <p className='contact-detail'><a href='tel:0297010558'>+(02) 9701 0558</a></p>
         <p className='contact-detail'><a href='mailto:wontonwarriorburwood@gmail.com'>wontonwarriorburwood@gmail.com</a></p>
         <h2>Address</h2>
@@ -19,13 +18,39 @@ const Contact = () => (
         <p>Everyday, 11:30am - 9:00pm</p>
         <h2>Order Online ( Pickup / Delivery )</h2>
         <div className='icon-list'>
-          <a href='https://www.menulog.com.au/restaurants-wonton-warriors/menu'><div className='icon-wrapper'><img src={menulogLogo} alt='menulogLogo'></img></div></a>
-          <a href='https://www.ubereats.com/en-AU/sydney/food-delivery/wonton-warrior/QU8lJ8Y-Sge5RFCId4SUqA/'><div className='icon-wrapper'><img src={ubereatsLogo} alt='ubereatsLogo'></img></div></a>
+          <a href='https://www.menulog.com.au/restaurants-wonton-warriors/menu'>
+            <div className='icon-wrapper'>
+              <img src={menulogLogo} alt='menulogLogo' height='40px'/>
+            </div>
+          </a>
+          <a href='https://www.ubereats.com/en-AU/sydney/food-delivery/wonton-warrior/QU8lJ8Y-Sge5RFCId4SUqA/'>
+            <div className='icon-wrapper'>
+              <img src={ubereatsLogo} alt='ubereatsLogo' width='40px' height='40px' />
+            </div>
+          </a>
         </div>
         <h2>Follow us</h2>
         <div className='icon-list'>
-          <a href='https://www.facebook.com/Wonton-Warrior-2310086639271293/'><div className='icon-wrapper'><img className='icon-invert' src={facebookLogo} alt='facebookLogo'></img></div></a>
-          <a href='https://www.instagram.com/wontonwarrior.au/'><div className='icon-wrapper'><img className='icon-invert' src={instagramLogo} alt='instagramLogo'></img></div></a>
+          <a href='https://www.facebook.com/Wonton-Warrior-2310086639271293/'>
+            <div className='icon-wrapper'
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '25px'
+              }}
+            >
+              <img src={facebookLogo} alt='facebookLogo' width='40px' height='40px' />
+            </div>
+          </a>
+          <a href='https://www.instagram.com/wontonwarrior.au/'>
+            <div className='icon-wrapper'
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '25px'
+              }}
+            >
+              <img src={instagramLogo} alt='instagramLogo' width='40px' height='40px' />
+            </div>
+          </a>
         </div>
       </div>
       <div className='section-extra-wrapper'>
