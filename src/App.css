@@ -159,6 +159,11 @@
   z-index: 1;
 }
 
+.contact-detail a {
+  color: white;
+  /* text-decoration: none; */
+}
+
 h1 {
   font-size: 5rem;
   text-align: center;

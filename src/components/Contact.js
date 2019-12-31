@@ -8,6 +8,8 @@ const Contact = () => (
     <div className='section-layout'>
       <div className='section-content-wrapper' style={{textAlign: 'left'}}>
         <h1>Contact</h1>
+        <p className='contact-detail'><a href='tel:0297010558'>+(02) 9701 0558</a></p>
+        <p className='contact-detail'><a href='mailto:wontonwarriorburwood@gmail.com'>wontonwarriorburwood@gmail.com</a></p>
         <h2>Address</h2>
         <p>135A Burwood Rd, Burwood NSW 2134</p>
         <h2>Opening Hours</h2>
