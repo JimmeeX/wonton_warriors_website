@@ -6,7 +6,6 @@ import menuPDF from '../menu.pdf';
 
 const Menu = () => (
   <div id='menu' className='section'>
-
     <div className='section-layout'>
       <Gallery />
       <div className='section-content-wrapper'>
