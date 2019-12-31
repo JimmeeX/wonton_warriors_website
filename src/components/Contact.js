@@ -16,7 +16,7 @@ const Contact = () => (
         <p>135A Burwood Rd, Burwood NSW 2134</p>
         <h2>Opening Hours</h2>
         <p>Everyday, 11:30am - 9:00pm</p>
-        <h2>Order Online ( Pickup / Delivery )</h2>
+        <h2>Order Online</h2>
         <div className='icon-list'>
           <a href='https://www.menulog.com.au/restaurants-wonton-warriors/menu'>
             <div className='icon-wrapper'>
