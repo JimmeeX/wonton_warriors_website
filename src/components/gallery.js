@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useTransition, animated } from 'react-spring'
+import { useTransition, animated } from 'react-spring';
 
 // Import all files from a directory
 const importAll = (r) => {
