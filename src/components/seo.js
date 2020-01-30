@@ -3,14 +3,14 @@ import Helmet from "react-helmet";
 
 const metadata = {
   title: 'Wonton Warrior',
-  description: 'Wontons and Noodle House in Burwood Sydney',
+  description: 'The official website for Wonton Warrior, 135A Burwood Rd Burwood Sydney, a young Chinese restaurant offering handmade wontons, dumplings, and noodles at a reasonable price to suit all taste palettes.',
   author: 'James Lin',
-  lang: 'en'
+  lang: 'en',
+  url: 'https://wontonwarrior.com'
 };
 
-
 const SEO = () => {
-  const { title, description, author, lang } = metadata;
+  const { title, description, author, lang, url } = metadata;
 
   return (
     <Helmet
@@ -37,8 +37,20 @@ const SEO = () => {
           content: description,
         },
         {
+          property: `og:locale`,
+          content: `en_US`,
+        },
+        {
+          property: `og:site_name`,
+          content: title,
+        },
+        {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: url,
         },
         {
           name: `twitter:card`,
