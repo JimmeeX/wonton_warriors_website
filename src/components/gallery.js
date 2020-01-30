@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useTransition, animated } from 'react-spring';
 
@@ -45,25 +45,24 @@ const Gallery = () => {
   const numRows = Math.max(Math.floor(gridH / (height + (marginH*2))), 1);
   const numItems = numCols * numRows;
 
+  const onResize = useCallback(() => {
+    setGridW(document.getElementById('gallery-parent').offsetWidth);
+    setGridH(document.getElementById('gallery-parent').offsetHeight);
+  }, [setGridW, setGridH]);
+
   useEffect(() => {
-    window.addEventListener("resize", () => {
-      setGridW(document.getElementById('gallery-parent').offsetWidth);
-      setGridH(document.getElementById('gallery-parent').offsetHeight);
-    });
     // Initial Values
     setGridW(document.getElementById('gallery-parent').offsetWidth);
     setGridH(document.getElementById('gallery-parent').offsetHeight);
 
+    window.addEventListener("resize", () => onResize());
     document.addEventListener('scroll', () => setActive(null));
 
     return () => {
-      window.removeEventListener("resize", () => {
-        setGridW(document.getElementById('gallery-parent').offsetWidth);
-        setGridH(document.getElementById('gallery-parent').offsetHeight);
-      });
+      window.removeEventListener("resize", () => onResize());
       document.removeEventListener('scroll', () => setActive(null));
     }
-  }, []);
+  }, [onResize]);
 
   useEffect(() => {
     const interval = setInterval(() => {
