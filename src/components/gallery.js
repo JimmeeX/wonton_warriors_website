@@ -22,8 +22,11 @@ const importAll = (r) => {
 const imgs = importAll(require.context('../images/gallery', false, /-\d+w\.(png|jpe?g|svg)$/));
 const base_imgs = Object.keys(imgs);
 
-const imgWidth = 200;
-const imgHeight = 133;
+const baseWidth = 150;
+const aspectRatio = 1.5; // W:H
+const maxExpandWidth = 1000;
+const expandFrac = 0.8;
+
 const marginW = 10;
 const marginH = 10;
 
@@ -36,8 +39,10 @@ const Gallery = () => {
   const [index, setIndex] = useState(0);      // Index for order of gallery items
   const [active, setActive] = useState(null); // Gallery Item Clicked
 
-  const numCols = Math.max(Math.floor(gridW / (imgWidth + (marginW*2))), 1);
-  const numRows = Math.max(Math.floor(gridH / (imgHeight + (marginH*2))), 1);
+  const numCols = Math.max(Math.floor(gridW / (baseWidth + (marginW*2))), 1);
+  const width = gridW / numCols - (marginW*2); // Flex Grow
+  const height = width / aspectRatio;
+  const numRows = Math.max(Math.floor(gridH / (height + (marginH*2))), 1);
   const numItems = numCols * numRows;
 
   useEffect(() => {
@@ -49,8 +54,15 @@ const Gallery = () => {
     setGridW(document.getElementById('gallery-parent').offsetWidth);
     setGridH(document.getElementById('gallery-parent').offsetHeight);
 
-    window.addEventListener('mouseup', () => setActive(null));
-    window.addEventListener('touchend', () => setActive(null));
+    document.addEventListener('scroll', () => setActive(null));
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        setGridW(document.getElementById('gallery-parent').offsetWidth);
+        setGridH(document.getElementById('gallery-parent').offsetHeight);
+      });
+      document.removeEventListener('scroll', () => setActive(null));
+    }
   }, []);
 
   useEffect(() => {
@@ -63,10 +75,10 @@ const Gallery = () => {
   let gridItems = base_imgs.map((item, i) => {
     if (item === active) {
       const el = document.getElementById('gallery-parent');
+
       // Expand, place in center
-      const multiplier = Math.min(window.innerHeight / imgWidth, (window.innerWidth * 0.9) / imgHeight);
-      const newWidth = imgWidth * multiplier;
-      const newHeight = imgHeight * multiplier;
+      const newWidth = Math.min(window.innerHeight * expandFrac * aspectRatio, window.innerWidth * expandFrac, maxExpandWidth);
+      const newHeight = newWidth / aspectRatio;
       const newX = window.innerWidth / 2 + window.scrollX - el.offsetLeft - newWidth / 2
       const newY = window.innerHeight / 2 + window.scrollY - el.offsetTop - newHeight / 2
       return {
@@ -88,24 +100,6 @@ const Gallery = () => {
     const cellWidth = gridW / numCols;
     const cellHeight = gridH / numRows;
 
-    // Variable Width based on margins
-    const w = cellWidth - 2 * marginW;
-    const h = cellHeight - 2 * marginH;
-
-    // Correct the ratio
-    const currRatio = w / h;
-    const desiredRatio = imgWidth / imgHeight;
-    let width = w;
-    let height = h;
-    if (currRatio < desiredRatio) {
-      // Too tall, decrease height
-      height = w * imgHeight / imgWidth;
-    }
-    else {
-      // Too wide
-      width = h * imgWidth / imgHeight;
-    }
-
     // Center image in cell
     const x = cellWidth * col + cellWidth / 2 - width / 2;
     const y = cellHeight * row + cellHeight / 2 - height / 2;
@@ -118,13 +112,16 @@ const Gallery = () => {
 
   const transitions = useTransition(gridItems, item => item.item, {
     from: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
-    // to: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
     enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
     update: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
-    // leave: { height: 0, opacity: 0 },
     config: { mass: 5, tension: 500, friction: 100 },
     trail: 0
   });
+
+  const handleClick = (item) => {
+    if (item.hidden || active === item) setActive(null);
+    else setActive(item);
+  };
 
   return (
     <div
@@ -142,8 +139,7 @@ const Gallery = () => {
             alt={`wonton-warrior-gallery-menu-${item.item}`}
             srcSet={`${imgs[item.item][300]} 300w, ${imgs[item.item][768]} 768w, ${imgs[item.item][1280]} 1280w, ${imgs[item.item][1920]} 1920w`}
             className={item.item === active ? 'gallery-card-active' : (item.hidden === true ? 'gallery-card-hidden' : 'gallery-card')}
-            onMouseDown={() => {if(!item.hidden) setActive(item.item)}}
-            onTouchStart={() => {if(!item.hidden) setActive(item.item)}}
+            onClick={() => handleClick(item.item)}
             style={{
               transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
               ...rest

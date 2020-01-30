@@ -31,6 +31,7 @@
 
 .header-menu li {
   margin: 20px;
+  cursor: pointer;
 }
 
 .menu-item {
@@ -150,7 +151,7 @@
 }
 
 .gallery-card-active {
-  z-index: 1;
+  z-index: 3;
 }
 
 .contact-detail a {
