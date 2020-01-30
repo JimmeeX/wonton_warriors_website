@@ -39,6 +39,11 @@ body {
   cursor: pointer;
 }
 
+.header-menu li:hover {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
 .menu-item {
   color: aliceblue;
   text-decoration: none;
