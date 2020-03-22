@@ -166,6 +166,7 @@ body {
 
 .gallery-card-hidden {
   cursor: default;
+  z-index: -1;
 }
 
 .gallery-card-active {
@@ -174,25 +175,36 @@ body {
 
 .contact-detail a {
   color: white;
+  text-decoration: underline;
 }
 
-h1 {
+.section-title {
   font-size: 3rem;
   text-align: center;
   color: #c8a063;
+  font-weight: 900;
 }
 
-h2 {
+.section-subtitle {
   font-size: 1.5rem;
+  color: white;
+  font-weight: 900;
+}
+
+.section p {
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 700px) {
-  h1 {
+  .section-title {
     font-size: 2.5rem;
+    font-weight: 900;
   }
 
-  h2 {
+  .section-subtitle {
     font-size: 1.25rem;
+    color: white;
+    font-weight: 900;
   }
 
   .header {

@@ -9,7 +9,7 @@ const Contact = () => (
   <div id="contact" className="section">
     <div className="section-layout">
       <div className="section-content-wrapper" style={{ textAlign: 'left' }}>
-        <h1>Contact</h1>
+        <h1 className="section-title">Contact</h1>
         <p className="contact-detail">
           <a href="tel:0297010558">+(02) 9701 0558</a>
         </p>
@@ -18,11 +18,11 @@ const Contact = () => (
             wontonwarriorburwood@gmail.com
           </a>
         </p>
-        <h2>Address</h2>
+        <h2 className="section-subtitle">Address</h2>
         <p>135A Burwood Rd, Burwood NSW 2134</p>
-        <h2>Opening Hours</h2>
+        <h2 className="section-subtitle">Opening Hours</h2>
         <p>Everyday, 11:30am - 9:00pm</p>
-        <h2>Order Online</h2>
+        <h2 className="section-subtitle">Order Online</h2>
         <div className="icon-list">
           <a href="https://www.menulog.com.au/restaurants-wonton-warriors/menu">
             <div className="icon-wrapper">
@@ -40,7 +40,9 @@ const Contact = () => (
             </div>
           </a>
         </div>
-        <h2>Follow us</h2>
+        <h2 className="section-subtitle" style={{ marginTop: '10px' }}>
+          Follow us
+        </h2>
         <div className="icon-list">
           <a href="https://www.facebook.com/Wonton-Warrior-2310086639271293/">
             <div
