@@ -1,12 +1,13 @@
-import React from "react";
-import Helmet from "react-helmet";
+import React from 'react';
+import Helmet from 'react-helmet';
 
 const metadata = {
   title: 'Wonton Warrior',
-  description: 'The official website for Wonton Warrior, 135A Burwood Rd Burwood Sydney, a young Chinese restaurant offering handmade wontons, dumplings, and noodles at a reasonable price to suit all taste palettes.',
+  description:
+    'The official website for Wonton Warrior, 135A Burwood Rd Burwood Sydney, a young Chinese restaurant offering handmade wontons, dumplings, and noodles at a reasonable price to suit all taste palettes.',
   author: 'James Lin',
   lang: 'en',
-  url: 'https://wontonwarrior.com'
+  url: 'https://wontonwarrior.com',
 };
 
 const SEO = () => {
@@ -18,7 +19,7 @@ const SEO = () => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s`}
+      titleTemplate="%s"
       meta={[
         {
           name: `description`,
