@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      # Install Dependencies
+      - echo Installing dependencies...
+      - npm install
+  build:
+    commands:
+      # Test (if any)
+      # Build
+      - echo Creating build file...
+      - npm run build
+  post_build:
+    commands:
+      # Sync with S3
+      - echo Syncing with S3...
+      - aws s3 sync ./build s3://www.wontonwarrior.com.au/ --delete
+      # Clear Cloudfront cache
+      - echo Creating cloudfront invalidation...
+      - aws cloudfront create-invalidation --distribution-id E2UNQU2LHY3W1Z --paths '/*'
