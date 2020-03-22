@@ -50,7 +50,7 @@ body {
 }
 
 .menu-item-active {
-  color: #C8A063;
+  color: #c8a063;
   font-weight: bold;
   text-decoration: underline;
 }
@@ -158,7 +158,8 @@ body {
   will-change: transform, width, height, opacity;
 }
 
-.gallery-card, .gallery-card-active {
+.gallery-card,
+.gallery-card-active {
   cursor: pointer;
   border-radius: 5%;
 }
@@ -178,7 +179,7 @@ body {
 h1 {
   font-size: 3rem;
   text-align: center;
-  color: #C8A063;
+  color: #c8a063;
 }
 
 h2 {
