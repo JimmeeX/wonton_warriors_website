@@ -41,6 +41,7 @@ const Gallery = () => {
   const [index, setIndex] = useState(0); // Index for order of gallery items
   const [active, setActive] = useState(null); // Gallery Item Clicked
   const [isLoaded, setIsLoaded] = useState(false); // Performance Fix on Load
+  const [isUserActive, setIsUserActive] = useState(true);
 
   const numCols = Math.max(Math.floor(gridW / (baseWidth + marginW * 2)), 1);
   const width = gridW / numCols - marginW * 2; // Flex Grow
@@ -53,6 +54,10 @@ const Gallery = () => {
     setGridH(document.getElementById('gallery-parent').offsetHeight);
   }, [setGridW, setGridH]);
 
+  const onVisibility = useCallback(() => {
+    setIsUserActive(!document.hidden);
+  }, [setIsUserActive]);
+
   useEffect(() => {
     // Initial Values
     setGridW(document.getElementById('gallery-parent').offsetWidth);
@@ -61,10 +66,12 @@ const Gallery = () => {
 
     window.addEventListener('resize', () => onResize());
     document.addEventListener('scroll', () => setActive(null));
+    document.addEventListener('visibilitychange', () => onVisibility());
 
     return () => {
       window.removeEventListener('resize', () => onResize());
       document.removeEventListener('scroll', () => setActive(null));
+      document.removeEventListener('visibilitychange', () => onVisibility());
     };
   }, [onResize]);
 
@@ -146,6 +153,7 @@ const Gallery = () => {
     >
       <div className="gallery">
         {isLoaded &&
+          isUserActive &&
           transitions.map(({ item, props: { xy, ...rest }, key }) => (
             <animated.img
               id={`gallery-card-${key}`}
