@@ -40,6 +40,7 @@ const Gallery = () => {
   const [gridH, setGridH] = useState(0);
   const [index, setIndex] = useState(0); // Index for order of gallery items
   const [active, setActive] = useState(null); // Gallery Item Clicked
+  const [isLoaded, setIsLoaded] = useState(false); // Performance Fix on Load
 
   const numCols = Math.max(Math.floor(gridW / (baseWidth + marginW * 2)), 1);
   const width = gridW / numCols - marginW * 2; // Flex Grow
@@ -56,6 +57,7 @@ const Gallery = () => {
     // Initial Values
     setGridW(document.getElementById('gallery-parent').offsetWidth);
     setGridH(document.getElementById('gallery-parent').offsetHeight);
+    setTimeout(() => setIsLoaded(true), 750);
 
     window.addEventListener('resize', () => onResize());
     document.addEventListener('scroll', () => setActive(null));
@@ -115,19 +117,18 @@ const Gallery = () => {
     // Handle hidden images
     const opacity = shiftIndex >= numItems ? 0 : 1;
     const hidden = shiftIndex >= numItems;
-    return { item, xy: [x, y], width, height, opacity, hidden };
+    return { item, key: i + 1, xy: [x, y], width, height, opacity, hidden };
   });
 
   const transitions = useTransition(gridItems, (item) => item.item, {
-    from: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
-    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
+    enter: ({ xy, width, height, opacity }) => ({ xy, width, height, opacity }),
     update: ({ xy, width, height, opacity }) => ({
       xy,
       width,
       height,
       opacity,
     }),
-    config: { mass: 5, tension: 500, friction: 100 },
+    config: { mass: 1, tension: 500, friction: 100 },
     trail: 0,
   });
 
@@ -144,33 +145,34 @@ const Gallery = () => {
       onMouseLeave={() => setStop(false)}
     >
       <div className="gallery">
-        {transitions.map(({ item, props: { xy, ...rest }, key }) => (
-          <animated.img
-            id={`gallery-card-${key}`}
-            key={key}
-            src={imgs[item.item][300]}
-            alt={`wonton-warrior-gallery-menu-${item.item}`}
-            srcSet={`${imgs[item.item][300]} 300w, ${
-              imgs[item.item][768]
-            } 768w, ${imgs[item.item][1280]} 1280w, ${
-              imgs[item.item][1920]
-            } 1920w`}
-            className={
-              item.item === active
-                ? 'gallery-card-active'
-                : item.hidden === true
-                ? 'gallery-card-hidden'
-                : 'gallery-card'
-            }
-            onClick={() => handleClick(item)}
-            style={{
-              transform: xy.interpolate(
-                (x, y) => `translate3d(${x}px,${y}px,0)`
-              ),
-              ...rest,
-            }}
-          />
-        ))}
+        {isLoaded &&
+          transitions.map(({ item, props: { xy, ...rest }, key }) => (
+            <animated.img
+              id={`gallery-card-${key}`}
+              key={key}
+              src={imgs[item.item][300]}
+              alt={`wonton-warrior-gallery-menu-${item.item}`}
+              srcSet={`${imgs[item.item][300]} 300w, ${
+                imgs[item.item][768]
+              } 768w, ${imgs[item.item][1280]} 1280w, ${
+                imgs[item.item][1920]
+              } 1920w`}
+              className={
+                item.item === active
+                  ? 'gallery-card-active'
+                  : item.hidden === true
+                  ? 'gallery-card-hidden'
+                  : 'gallery-card'
+              }
+              onClick={() => handleClick(item)}
+              style={{
+                transform: xy.interpolate(
+                  (x, y) => `translate3d(${x}px,${y}px,0)`
+                ),
+                ...rest,
+              }}
+            />
+          ))}
       </div>
     </div>
   );
