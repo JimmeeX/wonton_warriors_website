@@ -73,7 +73,7 @@ const Gallery = () => {
       document.removeEventListener('scroll', () => setActive(null));
       document.removeEventListener('visibilitychange', () => onVisibility());
     };
-  }, [onResize]);
+  }, [onResize, onVisibility]);
 
   useEffect(() => {
     const interval = setInterval(() => {
