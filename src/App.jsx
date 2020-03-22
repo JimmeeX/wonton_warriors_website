@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Modal } from 'antd';
 
-import Home from './components/Home';
-import About from './components/About';
-import Menu from './components/Menu';
-import Contact from './components/Contact';
+import Home from './pages/Home';
+import About from './pages/About';
+import Menu from './pages/Menu';
+import Contact from './pages/Contact';
 
-import Header from './components/header';
-import SEO from './components/seo';
+import Header from './components/Header';
+import SEO from './components/SEO';
 
 import './App.css';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Carousel from './carousel';
+import Carousel from '../components/Carousel';
 
 import mainLogoS from '../images/logo_main-300w.png';
 import mainLogoM from '../images/logo_main-768w.png';
