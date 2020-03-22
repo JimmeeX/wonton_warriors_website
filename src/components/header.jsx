@@ -22,14 +22,21 @@ const getScrollTo = (elId) => {
 const Header = () => {
   const [active, setActive] = useState('home');
 
+  const index = [
+    { name: 'home', id: 0 },
+    { name: 'about', id: 1 },
+    { name: 'menu', id: 2 },
+    { name: 'contact', id: 3 },
+  ];
+
   // Show Active Header Item
   useEffect(() => {
-    document.addEventListener("scroll", () => {
+    document.addEventListener('scroll', () => {
       if (isShow('contact')) setActive('contact');
       else if (isShow('menu')) setActive('menu');
       else if (isShow('about')) setActive('about');
       else setActive('home');
-    })
+    });
   }, []);
 
   // Animate Scroll (user scroll => stop animation)
@@ -54,35 +61,42 @@ const Header = () => {
         stopScroll = false;
         window.removeEventListener('wheel', onWheel);
       },
-      onFrame: props => {
+      onFrame: (props) => {
         if (!stopScroll) window.scroll(0, props.y);
-      }
+      },
     });
   };
 
   return (
-    <div className='header'>
-      <div className='header-logo-wrapper'>
-        <div onClick={() => scrollToTarget('home')} style={{ cursor: 'pointer' }}>
-          <img className='header-logo' src={Headerlogo} alt='header-logo' />
+    <div className="header">
+      <div className="header-logo-wrapper">
+        <div
+          onClick={() => scrollToTarget('home')}
+          onKeyPress={() => scrollToTarget('home')}
+          style={{ cursor: 'pointer' }}
+          role="button"
+          tabIndex="0"
+        >
+          <img className="header-logo" src={Headerlogo} alt="header-logo" />
         </div>
       </div>
-      <ul className='header-menu'>
-        {
-          ['home', 'about', 'menu', 'contact'].map((item, i) =>
-            <li key={i}>
-              <div
-                className={active === item ? 'menu-item-active' : 'menu-item'}
-                onClick={() => scrollToTarget(item)}
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </div>
-            </li>
-          )
-        }
+      <ul className="header-menu">
+        {index.map(({ name, id }) => (
+          <li key={id}>
+            <div
+              className={active === name ? 'menu-item-active' : 'menu-item'}
+              onClick={() => scrollToTarget(name)}
+              onKeyPress={() => scrollToTarget(name)}
+              role="button"
+              tabIndex="0"
+            >
+              {name.charAt(0).toUpperCase() + name.slice(1)}
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
-  )
+  );
 };
 
 export default Header;
