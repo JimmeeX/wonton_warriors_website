@@ -9,7 +9,7 @@ const About = () => (
   <div id="about" className="section">
     <div className="section-layout">
       <div className="section-content-wrapper">
-        <h1>About</h1>
+        <h1 className="section-title">About</h1>
         <p>
           We are a young noodle house specialising in a variety of handmade
           wontons and noodles. We aim to deliver premium quality food at a
