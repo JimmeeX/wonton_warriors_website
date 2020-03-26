@@ -11,7 +11,7 @@ const Contact = () => (
       <div className="section-content-wrapper" style={{ textAlign: 'left' }}>
         <h1 className="section-title">Contact</h1>
         <p className="contact-detail">
-          <a href="tel:0297010558">+(02) 9701 0558</a>
+          <a href="tel:+61467406770">+(61) 467 406 770</a>
         </p>
         <p className="contact-detail">
           <a href="mailto:wontonwarriorburwood@gmail.com">
