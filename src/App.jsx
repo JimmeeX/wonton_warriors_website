@@ -17,6 +17,9 @@ function info() {
     content: (
       <div>
         <p>
+          <b>WE WILL REMAIN OPEN FOR TAKEAWAYS AND DELIVERY</b>
+        </p>
+        <p>
           It has been more than a month since our last post and the world is now
           facing a crisis &nbsp;
           <span role="img" aria-label="globe">
@@ -76,25 +79,15 @@ function info() {
           </span>
         </p>
         <p>
-          We kindly ask you to reschedule or order takeaway in if you’re at risk
-          (from overseas, contact with positive case or symptomatic &nbsp;
-          <span role="img" aria-label="sick">
-            🤒
-          </span>
-          ).
-        </p>
-        <p>
-          We hope to continue trading as normal. However, we understand you may
-          not wish to eat out during this time of uncertainty. If you prefer to
-          stay home, our takeaway service is available through EASI and Ubereats
-          &nbsp;
-          <span role="img" aria-label="mobile">
+          You can choose to pickup from our shop or place your orders through
+          EASI, HungryPanda, Uber Eats or Menulog &nbsp;
+          <span role="img" aria-label="chopsticks">
             📲
           </span>
-          . You can now also request contactless delivery if you are concerned.
-          We appreciate your continued support during this time &nbsp;
-          <span role="img" aria-label="pray">
-            🙏
+          . We hope to provide you with comfort food during these anxious times
+          &nbsp;
+          <span role="img" aria-label="chopsticks">
+            🥢
           </span>
           .
         </p>
