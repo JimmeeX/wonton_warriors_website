@@ -6,7 +6,7 @@ import exteriorL from '../images/exterior-1280w.jpg';
 import exteriorVL from '../images/exterior-1920w.jpg';
 
 const About = () => (
-  <div id="about" className="section">
+  <section id="about" className="section">
     <div className="section-layout">
       <div className="section-content-wrapper">
         <h1 className="section-title">About</h1>
@@ -31,7 +31,7 @@ const About = () => (
         }}
       />
     </div>
-  </div>
+  </section>
 );
 
 export default About;

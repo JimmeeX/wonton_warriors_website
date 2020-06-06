@@ -7,7 +7,7 @@ import mainLogoM from '../images/logo_main-768w.png';
 import mainLogoL from '../images/logo_main-1280w.png';
 
 const Home = () => (
-  <div id="home" className="section">
+  <section id="home" className="section">
     <div className="main-logo-wrapper">
       <img
         src={mainLogoS}
@@ -16,7 +16,7 @@ const Home = () => (
       />
     </div>
     <Carousel className="carousel" />
-  </div>
+  </section>
 );
 
 export default Home;
