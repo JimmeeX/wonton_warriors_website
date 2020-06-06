@@ -49,9 +49,9 @@ const Menu = () => {
     );
 
   return (
-    <div id="menu" className="section">
+    <section id="menu" className="section">
       <div className="section-layout">{menuItems}</div>
-    </div>
+    </section>
   );
 };
 

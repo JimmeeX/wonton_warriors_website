@@ -68,7 +68,7 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="header-logo-wrapper">
         <div
           onClick={() => scrollToTarget('home')}
@@ -95,7 +95,7 @@ const Header = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </header>
   );
 };
 

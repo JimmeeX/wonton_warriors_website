@@ -6,18 +6,22 @@ import menulogLogo from '../images/menulog-logo.png';
 import ubereatsLogo from '../images/ubereats-logo.png';
 
 const Contact = () => (
-  <div id="contact" className="section">
+  <section id="contact" className="section">
     <div className="section-layout">
       <div className="section-content-wrapper" style={{ textAlign: 'left' }}>
         <h1 className="section-title">Contact</h1>
-        <p className="contact-detail">
-          <a href="tel:+61467406770">+(61) 467 406 770</a>
-        </p>
-        <p className="contact-detail">
-          <a href="mailto:wontonwarriorburwood@gmail.com">
+        <address>
+          <a className="contact-detail" href="tel:+61467406770">
+            +(61) 467 406 770
+          </a>
+          <br />
+          <a
+            className="contact-detail"
+            href="mailto:wontonwarriorburwood@gmail.com"
+          >
             wontonwarriorburwood@gmail.com
           </a>
-        </p>
+        </address>
         <h2 className="section-subtitle">Address</h2>
         <p>135A Burwood Rd, Burwood NSW 2134</p>
         <h2 className="section-subtitle">Opening Hours</h2>
@@ -92,7 +96,7 @@ const Contact = () => (
         />
       </div>
     </div>
-  </div>
+  </section>
 );
 
 export default Contact;

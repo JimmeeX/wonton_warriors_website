@@ -173,9 +173,11 @@ body {
   z-index: 3;
 }
 
-.contact-detail a {
+.contact-detail {
+  display: block;
   color: white;
   text-decoration: underline;
+  font-style: normal;
 }
 
 .section-title {
