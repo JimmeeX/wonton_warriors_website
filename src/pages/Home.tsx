@@ -15,7 +15,7 @@ const Home = () => (
         srcSet={`${mainLogoS} 300w, ${mainLogoM} 768w, ${mainLogoL} 1280w`}
       />
     </div>
-    <Carousel className="carousel" />
+    <Carousel />
   </section>
 );
 
