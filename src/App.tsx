@@ -10,17 +10,15 @@ import SEO from './components/SEO';
 
 import './App.css';
 
-const App = () => {
-  return (
-    <div className="app">
-      <SEO />
-      <Header />
-      <Home />
-      <About />
-      <Menu />
-      <Contact />
-    </div>
-  );
-};
+const App = () => (
+  <div className="app">
+    <SEO />
+    <Header />
+    <Home />
+    <About />
+    <Menu />
+    <Contact />
+  </div>
+);
 
 export default App;

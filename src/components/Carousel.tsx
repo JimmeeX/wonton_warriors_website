@@ -2,14 +2,23 @@ import React, { useState, useEffect } from 'react';
 
 import { useTransition, animated, config } from 'react-spring';
 
+type Files = {
+  [index: string]: {
+    [index: string]: any;
+  };
+};
+
 // Import all files from a directory
-const importAll = (r) => {
-  const files = {};
+/* global __WebpackModuleApi */
+const importAll = (r: __WebpackModuleApi.RequireContext) => {
+  const files: Files = {};
 
   const parseRegex = /(.+)-(\d+)w.(?:jpg|png)/;
 
   r.keys().map((key) => {
     const match = parseRegex.exec(key);
+
+    if (!match) return null;
     const baseFile = match[1];
     const fileSize = match[2];
     if (!(baseFile in files)) files[baseFile] = {};
@@ -41,16 +50,20 @@ const Carousel = () => {
     []
   );
 
-  return transitions.map(({ item, props, key }) => (
-    <animated.img
-      key={key}
-      className="carousel-img"
-      style={{ ...props }}
-      src={imgs[item][300]}
-      srcSet={`${imgs[item][300]} 300w, ${imgs[item][768]} 768w, ${imgs[item][1280]} 1280w, ${imgs[item][1920]} 1920w`}
-      alt={`carousel-menu-${item}`}
-    />
-  ));
+  return (
+    <>
+      {transitions.map(({ item, props, key }) => (
+        <animated.img
+          key={key}
+          className="carousel-img"
+          style={{ ...props }}
+          src={imgs[item][300]}
+          srcSet={`${imgs[item][300]} 300w, ${imgs[item][768]} 768w, ${imgs[item][1280]} 1280w, ${imgs[item][1920]} 1920w`}
+          alt={`carousel-menu-${item}`}
+        />
+      ))}
+    </>
+  );
 };
 
 export default Carousel;

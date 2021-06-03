@@ -2,17 +2,37 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { useTransition, animated } from 'react-spring';
 
+type Files = {
+  [index: string]: {
+    [index: string]: any;
+  };
+};
+
+type GalleryItem = {
+  item: string;
+  xy: number[];
+  width: number;
+  height: number;
+  opacity: number;
+  hidden: boolean;
+  key: number;
+};
+
 // Import all files from a directory
-const importAll = (r) => {
-  const files = {};
+/* global __WebpackModuleApi */
+const importAll = (r: __WebpackModuleApi.RequireContext) => {
+  const files: Files = {};
 
   const parseRegex = /(.+)-(\d+)w.(?:jpg|png)/;
 
   r.keys().map((key) => {
     const match = parseRegex.exec(key);
+
+    if (!match) return null;
     const baseFile = match[1];
     const fileSize = match[2];
     if (!(baseFile in files)) files[baseFile] = {};
+
     files[baseFile][fileSize] = r(key);
     return null;
   });
@@ -39,7 +59,7 @@ const Gallery = () => {
   const [gridW, setGridW] = useState(0);
   const [gridH, setGridH] = useState(0);
   const [index, setIndex] = useState(0); // Index for order of gallery items
-  const [active, setActive] = useState(null); // Gallery Item Clicked
+  const [active, setActive] = useState<string | null>(null); // Gallery Item Clicked
   const [isLoaded, setIsLoaded] = useState(false); // Performance Fix on Load
   const [isUserActive, setIsUserActive] = useState(true);
 
@@ -50,8 +70,9 @@ const Gallery = () => {
   const numItems = numCols * numRows;
 
   const onResize = useCallback(() => {
-    setGridW(document.getElementById('gallery-parent').offsetWidth);
-    setGridH(document.getElementById('gallery-parent').offsetHeight);
+    const el = document.getElementById('gallery-parent');
+    setGridW(el!.offsetWidth);
+    setGridH(el!.offsetHeight);
   }, [setGridW, setGridH]);
 
   const onVisibility = useCallback(() => {
@@ -60,8 +81,10 @@ const Gallery = () => {
 
   useEffect(() => {
     // Initial Values
-    setGridW(document.getElementById('gallery-parent').offsetWidth);
-    setGridH(document.getElementById('gallery-parent').offsetHeight);
+    const el = document.getElementById('gallery-parent');
+    setGridW(el!.offsetWidth);
+    setGridH(el!.offsetHeight);
+
     setTimeout(() => setIsLoaded(true), 750);
 
     window.addEventListener('resize', () => onResize());
@@ -95,9 +118,9 @@ const Gallery = () => {
       );
       const newHeight = newWidth / aspectRatio;
       const newX =
-        window.innerWidth / 2 + window.scrollX - el.offsetLeft - newWidth / 2;
+        window.innerWidth / 2 + window.scrollX - el!.offsetLeft - newWidth / 2;
       const newY =
-        window.innerHeight / 2 + window.scrollY - el.offsetTop - newHeight / 2;
+        window.innerHeight / 2 + window.scrollY - el!.offsetTop - newHeight / 2;
       return {
         item,
         xy: [newX, newY],
@@ -105,6 +128,7 @@ const Gallery = () => {
         height: newHeight,
         opacity: 1,
         hidden: false,
+        key: i + 1,
       };
     }
 
@@ -139,7 +163,7 @@ const Gallery = () => {
     trail: 0,
   });
 
-  const handleClick = (item) => {
+  const handleClick = (item: GalleryItem) => {
     if (item.hidden === true || active === item.item) setActive(null);
     else setActive(item.item);
   };
@@ -154,6 +178,7 @@ const Gallery = () => {
       <div className="gallery">
         {isLoaded &&
           isUserActive &&
+          // @ts-ignore: TODO: Fix
           transitions.map(({ item, props: { xy, ...rest }, key }) => (
             <animated.img
               id={`gallery-card-${key}`}
@@ -175,7 +200,7 @@ const Gallery = () => {
               onClick={() => handleClick(item)}
               style={{
                 transform: xy.interpolate(
-                  (x, y) => `translate3d(${x}px,${y}px,0)`
+                  (x: number, y: number) => `translate3d(${x}px,${y}px,0)`
                 ),
                 ...rest,
               }}
