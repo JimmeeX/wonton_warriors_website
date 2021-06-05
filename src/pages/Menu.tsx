@@ -28,8 +28,13 @@ const Menu = () => {
         appetites.
       </p>
       <p className="section-paragraph">
-        <a href={menuPDF} className="menu-link">
-          Download Menu
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={menuPDF}
+          className="menu-link"
+        >
+          View Menu
         </a>
       </p>
     </div>
