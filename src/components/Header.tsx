@@ -53,7 +53,7 @@ const Header = () => {
 
     window.addEventListener('wheel', onWheel);
 
-    setY({
+    setY.start({
       y: value,
       reset: true,
       from: { y: window.scrollY },
@@ -61,9 +61,8 @@ const Header = () => {
         stopScroll = false;
         window.removeEventListener('wheel', onWheel);
       },
-      // @ts-ignore: TODO: Fix
-      onFrame: (props) => {
-        if (!stopScroll) window.scroll(0, props.y);
+      onChange: (props) => {
+        if (!stopScroll) window.scroll(0, props.value.y);
       },
     });
   };

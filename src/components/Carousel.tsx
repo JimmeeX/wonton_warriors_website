@@ -35,7 +35,7 @@ const baseImgs = Object.keys(imgs);
 
 const Carousel = () => {
   const [index, set] = useState(0);
-  const transitions = useTransition(baseImgs[index], (item) => item, {
+  const transitions = useTransition(baseImgs[index], {
     from: { opacity: 0 },
     enter: { opacity: 0.5 },
     leave: { opacity: 0 },
@@ -52,11 +52,11 @@ const Carousel = () => {
 
   return (
     <>
-      {transitions.map(({ item, props, key }) => (
+      {transitions(({ opacity }, item) => (
         <animated.img
-          key={key}
+          key={item}
           className="carousel-img"
-          style={{ ...props }}
+          style={{ opacity }}
           src={imgs[item][300]}
           srcSet={`${imgs[item][300]} 300w, ${imgs[item][768]} 768w, ${imgs[item][1280]} 1280w, ${imgs[item][1920]} 1920w`}
           alt={`carousel-menu-${item}`}
