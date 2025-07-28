@@ -7,13 +7,12 @@ type Files = {
 };
 
 // Import all files from a directory
-/* global __WebpackModuleApi */
-const importAll = (r: __WebpackModuleApi.RequireContext) => {
+const importAll = (r: any) => {
   const files: Files = {};
 
   const parseRegex = /(.+)-(\d+)w.(?:jpg|png)/;
 
-  r.keys().map((key) => {
+  r.keys().map((key: string) => {
     const match = parseRegex.exec(key);
 
     if (!match) return null;
@@ -28,11 +27,15 @@ const importAll = (r: __WebpackModuleApi.RequireContext) => {
 };
 
 const imgs = importAll(
-  require.context('../images/gallery', false, /-\d+w\.(png|jpe?g|svg)$/)
+  (require as any).context(
+    '../images/gallery',
+    false,
+    /-\d+w\.(png|jpe?g|svg)$/
+  )
 );
 const baseImgs = Object.keys(imgs);
 
-const Gallery = () => {
+function Gallery() {
   const ImgList = baseImgs.map((item, i) => {
     const key = i + 1;
 
@@ -61,6 +64,6 @@ const Gallery = () => {
       <div className="gallery">{ImgList}</div>
     </div>
   );
-};
+}
 
 export default Gallery;
