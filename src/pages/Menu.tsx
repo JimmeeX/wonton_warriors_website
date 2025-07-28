@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import Gallery from '../components/Gallery';
 
-import menuPDF from '../menu.pdf';
-
 const Menu = () => {
   const [pageWidth, setPageWidth] = useState(document.body.offsetWidth);
 
@@ -26,16 +24,6 @@ const Menu = () => {
         also offer a comprehensive range of other Chinese delicacies including
         dumplings, noodles and specialty dishes to suit all taste palettes and
         appetites.
-      </p>
-      <p className="section-paragraph">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={menuPDF}
-          className="menu-link"
-        >
-          View Menu
-        </a>
       </p>
     </div>
   );
