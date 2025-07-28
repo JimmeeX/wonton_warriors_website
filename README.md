@@ -1,6 +1,6 @@
 # Wonton Warrior Website
 
-Made open-source for fellow programmers to pry into to learn. May be helpful for beginners looking into frontend web-development. I am regularly making updates as I learn more tools and best practices. Have fun :).
+Made open-source for fellow programmers to pry into to learn. May be helpful for beginners looking into frontend web-development. I am regularly making updates as I learn more tools and best practices. Have fun! :).
 
 ## Tech-stack
 
