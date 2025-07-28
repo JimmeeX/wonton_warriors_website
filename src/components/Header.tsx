@@ -19,7 +19,7 @@ const getScrollTo = (elId: string) => {
   return el.offsetTop - headerHeight + 1;
 };
 
-const Header = () => {
+function Header() {
   const [active, setActive] = useState('home');
 
   const index = [
@@ -97,6 +97,6 @@ const Header = () => {
       </ul>
     </header>
   );
-};
+}
 
 export default Header;

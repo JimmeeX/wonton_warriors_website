@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { useTransition, animated, config } from 'react-spring';
 
 type Files = {
@@ -9,13 +8,12 @@ type Files = {
 };
 
 // Import all files from a directory
-/* global __WebpackModuleApi */
-const importAll = (r: __WebpackModuleApi.RequireContext) => {
+const importAll = (r: any) => {
   const files: Files = {};
 
   const parseRegex = /(.+)-(\d+)w.(?:jpg|png)/;
 
-  r.keys().map((key) => {
+  r.keys().map((key: string) => {
     const match = parseRegex.exec(key);
 
     if (!match) return null;
@@ -29,11 +27,15 @@ const importAll = (r: __WebpackModuleApi.RequireContext) => {
 };
 
 const imgs = importAll(
-  require.context('../images/carousel', false, /-\d+w\.(png|jpe?g|svg)$/)
+  (require as any).context(
+    '../images/carousel',
+    false,
+    /-\d+w\.(png|jpe?g|svg)$/
+  )
 );
 const baseImgs = Object.keys(imgs);
 
-const Carousel = () => {
+function Carousel() {
   const [index, set] = useState(0);
   const transitions = useTransition(baseImgs[index], {
     from: { opacity: 0 },
@@ -52,11 +54,11 @@ const Carousel = () => {
 
   return (
     <>
-      {transitions(({ opacity }, item) => (
+      {transitions((style: any, item: string) => (
         <animated.img
           key={item}
           className="carousel-img"
-          style={{ opacity }}
+          style={style}
           src={imgs[item][300]}
           srcSet={`${imgs[item][300]} 300w, ${imgs[item][768]} 768w, ${imgs[item][1280]} 1280w, ${imgs[item][1920]} 1920w`}
           alt={`carousel-menu-${item}`}
@@ -64,6 +66,6 @@ const Carousel = () => {
       ))}
     </>
   );
-};
+}
 
 export default Carousel;

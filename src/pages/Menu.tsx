@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Gallery from '../components/Gallery';
 
-const Menu = () => {
+function Menu() {
   const [pageWidth, setPageWidth] = useState(document.body.offsetWidth);
 
   useEffect(() => {
@@ -46,6 +46,6 @@ const Menu = () => {
       <div className="section-layout">{menuItems}</div>
     </section>
   );
-};
+}
 
 export default Menu;
